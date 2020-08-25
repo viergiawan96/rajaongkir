@@ -10,21 +10,21 @@
 
             <div class="flex ml-5">
                 <label class="flex items-center">
-                    <input type="checkbox" class="cursor-pointer form-checkbox h-3" checked>
+                    <input @click="unFlag('jne')" type="checkbox" class="cursor-pointer form-checkbox h-3" :checked="this.flagJne === true ? 'checked' : ''">
                     <span class="cursor-pointer ml-1">JNE</span>
                 </label>
             </div>
             
             <div class="flex mx-5">
                 <label class="flex items-center">
-                    <input type="checkbox" class="cursor-pointer form-checkbox h-3">
+                    <input @click="unFlag('tiki')" type="checkbox" class="cursor-pointer form-checkbox h-3" :checked="this.flagTiki === true ? 'checked' : ''">
                     <span class="cursor-pointer ml-1">TIKI</span>
                 </label>
             </div>
 
             <div class="flex">
                 <label class="flex items-center">
-                    <input type="checkbox" class="cursor-pointer form-checkbox h-3">
+                    <input @click="unFlag('pos')" type="checkbox" class="cursor-pointer form-checkbox h-3" :checked="this.flagPos === true ? 'checked' : ''">
                     <span class="cursor-pointer ml-1">POS</span>
                 </label>
             </div>
@@ -56,6 +56,7 @@
                     </div>
                 </div>
             </div>
+            {{dataCost}}
         </div>
     </div>  
 </template>
@@ -63,17 +64,19 @@
 <script>
 export default {
     name : 'Container',
-    props: ['dataCost','City'],
+    props: ['dataCost','City','flagJne','flagTiki','flagPos'],
     methods : {
         getCity(id) {
             if(id) {
                 const items = this.City.find(el => el.city_id === id);
                 return items.city_name;
-                
             }else{
                 return ' ';
             }
         },
+        unFlag(value) {
+            this.$emit('unFlag', value);
+        }
     }
 }
 </script>

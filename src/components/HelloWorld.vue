@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="flex-auto">
-          <Container :dataCost="getDataCost" :City="City"/>
+          <Container @unFlag="unFlag" :dataCost="getDataCost" :City="City" :flagJne="flagJne" :flagTiki="flagTiki" :flagPos="flagPos"/>
         </div>
       </div>
   </div>
@@ -59,10 +59,18 @@ export default {
       weight : '',
       courier : ['jne','tiki','pos'],
       getDataCost : [],
-      access_token : '7G2mNCj2YTRIbf4APMdjaVvJXfd4cb4CPt5RGes4W0ezlmTOQNyN3HYdvsQJJPsUNHVqyIdzPid1Cswx'
+      access_token : '7G2mNCj2YTRIbf4APMdjaVvJXfd4cb4CPt5RGes4W0ezlmTOQNyN3HYdvsQJJPsUNHVqyIdzPid1Cswx',
+      flagJne : false,
+      flagTiki : false,
+      flagPos : false,
+      flagActive : false
     }
   },
    methods:{
+      unFlag(value) {
+        const data = this.getDataCost;
+
+      },
      getSelectedFroms(value){
        this.selectedFrom = value.city_id; 
      },
@@ -70,7 +78,22 @@ export default {
      getSelectedTos(value){
        this.selectedTo = value.city_id;
      },
+     getFlag(value){
+       const items1 = value.find(el => el.code === 'jne');
+       const items2 = value.find(el => el.code === 'tiki');
+       const items3 = value.find(el => el.code === 'pos');
 
+        if(items1) {
+          this.flagJne = true;
+        } 
+        if(items2) {
+          this.flagTiki = true;
+        }
+        if(items3) {
+          this.flagPos = true;
+        }
+
+     },
      async GetCity(){
       const URL ='https://rajaongkir.satrioyudho.com/city';
 
@@ -89,11 +112,11 @@ export default {
 
       getCost() {
         if(!this.selectedFrom){
-              return alert('kota asal Kosong');
+              alert('kota asal Kosong');
         }else if(!this.selectedTo) {
-              return alert('kota tujuan Kosong');
+              alert('kota tujuan Kosong');
         }else if(!this.weight) {
-              return alert('Berat Kiriman Kosong');
+              alert('Berat Kiriman Kosong');
         }else {
             const URL ='https://rajaongkir.satrioyudho.com/getCost';
 
@@ -111,6 +134,7 @@ export default {
             })
             .then( res => {
               this.getDataCost = res.data.data;
+              this.getFlag(res.data.data.results);
             })
             .catch( err => {
               console.log(err);
@@ -120,7 +144,7 @@ export default {
       }
   },
 
-  mounted(){
+  created(){
 
     this.GetCity();
 
