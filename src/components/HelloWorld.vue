@@ -59,14 +59,11 @@ export default {
       weight : '',
       courier : ['jne','tiki','pos'],
       getDataCost : [],
-<<<<<<< HEAD
       flagJne : false,
       flagTiki : false,
       flagPos : false,
       flagActive : false
-=======
       access_token : '<token>'
->>>>>>> 043ebcdbd453655f71f9944227ed3ac148a19fbe
     }
   },
    methods:{
