@@ -59,7 +59,7 @@ export default {
       weight : '',
       courier : ['jne','tiki','pos'],
       getDataCost : [],
-      access_token : '7G2mNCj2YTRIbf4APMdjaVvJXfd4cb4CPt5RGes4W0ezlmTOQNyN3HYdvsQJJPsUNHVqyIdzPid1Cswx'
+      access_token : '<token>'
     }
   },
    methods:{
