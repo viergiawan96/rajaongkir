@@ -63,7 +63,7 @@ export default {
       flagTiki : false,
       flagPos : false,
       flagActive : false
-      access_token : '<token>'
+      access_token : '7G2mNCj2YTRIbf4APMdjaVvJXfd4cb4CPt5RGes4W0ezlmTOQNyN3HYdvsQJJPsUNHVqyIdzPid1Cswx'
     }
   },
    methods:{
